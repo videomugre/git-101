@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">	
+<head>
+	<meta charset="utf-8">
+	<title>Git 101</title>
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/white.css" id="theme">	
+	<!--Add support for earlier versions of Internet Explorer -->
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+	<style>
+	h1, h2, h3, h4, h5{
+		text-transform: none !important;
+	}
+	</style>
+</head>
+ 
+<body>
+	<!-- Wrap the entire slide show in a div using the "reveal" class. -->
+	<div class="reveal">
+		<!-- Wrap all slides in a single "slides" class -->
+		<div class="slides">
+ 
+			<!-- ALL SLIDES GO HERE -->
+			<!-- Each section element contains an individual slide -->
+
+			<section>
+				<h2>Git 101</h2>
+				<p style="text-align: right">por Fernando Osuna</p>
+			</section>
+
+			<section>
+				<image src="jackie.jpg"/>
+			</section>
+
+			<section>
+				<h4>Primero, ¿como moverse en el cmd?</h4>
+				<p>cd ruta absoluta o relativa</p>
+				<p>cd.. (para moverse a la carpeta superior)</p>
+				<p>Tip: puedes pegar rutas en el cmd</p>
+			</section>
+
+			<section>
+				<h4>Segundo, conceptos básicos</h4>
+				<ul>
+					<li><b>BRANCH</b> ramificación de un proyecto.</li>
+					<li><b>MASTER</b> BRANCH default.</li>
+					<li><b>COMMIT</b> guardar los cambios en el repositorio local.</li>
+					<li><b>HEAD</b> es el 'identificador' del COMMIT en el que el usuario se encuentra.</li>
+					<li><b>TAG</b> identificación textual.</li>
+					<li><b>REPOSITORIO</b> tiene toda la información referentes a los COMMITs.</li>
+					<li><b>PUSH</b> sube los cambios locales al repositorio.</li>
+					<li><b>PULL</b> descarga los cambios locales del repositorio.</li>
+					<li><b>CLONE</b> copia por completo un repositorio.</li>
+				</ul>
+			</section>
+
+			<section>
+				<h4>Tercero, algo de configuración</h4>
+				<p>git config --global user.name "Juan Perez"</p>
+				<p>git config --global user.email "juan.perez@clima-flex.com"</p>
+				<p>git config --global core.editor "notepad"</p>
+			</section>
+
+			<section>
+				<h4>Empecemos. Una vez ubicados en la carpeta, inicializamos git</h4>
+				<p>git init</p>
+			</section>
+
+			<section>
+				<h4>Se crea la carpeta .git</h4>
+				<p>En esa carpeta está todo lo que hacemos en git</p>
+				<p>En el archivo .gitignore se especifican las rutas o archivos que queremos git ignore</p>
+			</section>
+
+			<section>
+				<h4>Agregamos todos los archivos para nuestro primer COMMIT</h4>
+				<p>git add .</p>
+			</section>
+
+			<section>
+				<h4>Para ver el estado de nuestro BRANCH en cualquier momento</h4>
+				<p>git status</p>
+			</section>
+
+			<section>
+				<h4>Nuestro primer COMMIT</h4>
+				<p>git commit</p>
+			</section>
+
+			<section>
+				<image src="message.jpg"/>
+			</section>
+
+			<section>
+				<h4>Etiquetar nuestro COMMIT</h4>
+				<p>git tag vX.Y.Z</p>
+				<p>git tag -a vX.Y.Z -m "Mensaje de TAG."</p>
+				<p>git describe --tags<br>(describe el tag actual)</p>
+			</section>
+
+			<section>
+				<h4>Crear un nuevo BRANCH y entrar en él</h4>
+				<p>git checkout -b nombre_del_branch</p>
+				<p>Tip: nombra tus BRANCHEs con el formato tipo/tema</p>
+			</section>
+
+			<section>
+				<h4>Listar BRANCHEs</h4>
+				<p>git branch</p>
+				<p>git branch --list "tipo/*"<br>(para listar por cierto nombre)</p>
+			</section>
+
+			<section>
+				<h4>Para agregar los archivos nuevos al próximo COMMIT</h4>
+				<p>git add -A</p>
+				<p>git add ruta/nombre_de_archivo<br>(para agregar archivos o rutas especificas)</p>
+			</section>
+
+			<section>
+				<h4>Hacer COMMIT considerando los archivos modificados (y borrados) y escribir mensaje al mismo tiempo</h4>
+				<p>git commit -a -m "Mensaje de COMMIT."</p>
+			</section>
+
+			<section>
+				<image src="commit.gif"/>
+			</section>
+
+			<section>
+				<h4>Para comparar 2 BRANCHEs</h4>
+				<p>git diff branch1 branch2</p>
+			</section>
+
+			<section>
+				<h4>Editar mensaje de último COMMIT</h4>
+				<p>git commit --amend</p>
+			</section>
+
+			<section>
+				<h4>Deshacer cambios de un archivo a última versión</h4>
+				<p>git checkout HEAD -- nombre_de_archivo</p>
+			</section>
+
+			<section>
+				<h4>Moverse entre BRANCHEs</h4>
+				<p>git checkout nombre_del_branch</p>
+			</section>
+
+			<section>
+				<h4>Guardar cambios sin hacer COMMIT</h4>
+				<p>git stash -u</p>
+				<p>git stash pop<br>(los trae de vuelta listos para el COMMIT)</p>
+				<p>git stash list<br>(los lista)</p>
+				<p>git stash drop<br>(los borra)</p>
+				<p>(si nos movemos a otro branch sin hacer commit o stash, pasan cosas raras)</p>
+			</section>
+
+			<section>
+				<h4>Combinar con otro BRANCH</h4>
+				<p>git merge nombre_del_branch</p>
+			</section>
+
+			<section>
+				<image src="merge.gif"/>
+			</section>
+
+			<section>
+				<h4>¿Qué es un conflicto?</h4>
+				<p>Cuando los 2 BRANCHEs a combinar tienen cambios diferentes</p>
+				<p>Se resuelven a mano</p>
+			</section>
+
+			<section>
+				<image src="cage.jpg"/>
+			</section>
+
+			<section>
+				<image src="arnold.png"/>
+			</section>
+
+			<section>
+				<h4>Borrar BRANCH</h4>
+				<p>git branch -d nombre_del_branch</p>
+				<p>git branch -D nombre_del_branch<br>(si quieren ignorar cualquier advertencia)</p>
+			</section>
+
+			<section>
+				<image style="width:23%" src="delete.jpg"/>
+			</section>
+
+			<section>
+				<h4>Ver log de COMMITs</h4>
+				<p>git log</p>
+				<p>(ENTER para avanzar y Q para salir)</p>
+			</section>
+
+			<section>
+				<h4>Agregar repositorio remoto</h4>
+				<p>git remote add origin nombre_de_repositorio</p>
+			</section>
+
+			<section>
+				<h4>Subir COMMITs al repositorio</h4>
+				<p>git push -u origin HEAD --tags</p>
+			</section>
+
+			<section>
+				<image src="vamonos.jpg"/>
+			</section>
+
+			<section>
+				<h4>Bajar nuevos COMMITs del repositorio</h4>
+				<p>git fetch</p>
+			</section>
+
+			<section>
+				<h4>Bajar nuevos COMMITs del repositorio y hacer MERGE con ellos</h4>
+				<p>git pull</p>
+			</section>
+
+			<section>
+				<h4>Revertir el último COMMIT y considerar este mismo paso en su historia</h4>
+				<p>git revert HEAD</p>
+				<p>git revert HEAD~n<br>(donde n es el número de COMMITS que quieres volver en su historia)</p>
+			</section>
+
+			<section>
+				<h4>Resetea el proyecto a cierto COMMIT</h4>
+				<p>git reset --soft HEAD<br>(deshace el último COMMIT pero conserva los cambios)</p>
+				<p>git reset --hard HEAD<br>(deshace completamente los cambios al último COMMIT)</p>
+				<p>git reset --hard origin/master<br>(se resetea con el master del repositorio)</p>
+			</section>
+
+			<section>
+				<image src="reset.jpg"/>
+			</section>
+
+			<section>
+				<h4>Clonar proyecto</h4>
+				<p>git clone ruta_a_repositorio</p>
+			</section>
+
+			<section>
+				<h4>¿Dudas?</h4>
+			</section>
+
+			<section>
+				<h4>Git Hooks</h4>
+				<p>Acciones que se pueden realizar después de un evento.</p>
+			</section>
+
+			<section>
+				<h4>Donde hay ayuda</h4>
+				<p>Stack Overflow <a href="https://es.stackoverflow.com/questions/tagged/git" target="_blank">en español</a> y <a href="https://stackoverflow.com/questions/tagged/git" target="_blank">en inglés</a></p>
+				<p><a href="https://git-scm.com/docs" target="_blank">Documentación oficial de Git</a></p>
+				<p><a href="https://www.google.com/" target="_blank">Google</a></p>
+				<p><a href="http://clima-flex.com/git/fellas.jpg" target="_blank">Con su servidor</a></p>
+			</section>
+
+			</div>
+	</div>
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.js"></script>
+ 
+	<script>
+		// Required, even if empty.
+		Reveal.initialize({
+		});
+	</script>
+</body>
+</html>
